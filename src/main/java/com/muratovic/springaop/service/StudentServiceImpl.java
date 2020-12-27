@@ -1,5 +1,6 @@
 package com.muratovic.springaop.service;
 
+import com.muratovic.springaop.annotations.Loggable;
 import com.muratovic.springaop.domain.Student;
 import com.muratovic.springaop.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Loggable
     public Student create(Student student) {
         return studentRepository.save(student);
     }
