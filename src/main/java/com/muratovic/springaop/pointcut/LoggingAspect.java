@@ -23,23 +23,23 @@ public class LoggingAspect {
         }
     };
 
-    @Pointcut("within(com.muratovic..*) && execution(* com.muratovic.springaop.repository.StudentRepository.*(..))")
-    public void repositoryMethods() {
+    @Pointcut("within(com.muratovic..*) && execution(* com.muratovic.springaop.service.StudentService.*(..))")
+    public void serviceMethods() {
     }
 
     @Pointcut("within(com.muratovic..*) && @annotation(com.muratovic.springaop.annotations.Loggable)")
     public void loggableMethods() {
     }
 
-    @Before("repositoryMethods()")
+    @Before("serviceMethods()")
     public void logMethodCall(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
-        logger.info(sdf.get().format(new Date()) + methodName);
+        logger.info(sdf.get().format(new Date()) + " - Service method will be executed: " + methodName);
     }
 
     @Before("loggableMethods()")
     public void logMethod(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
-        logger.info("Executing method: " + methodName);
+        logger.info(sdf.get().format(new Date()) + " - Loggable method will be executed: " + methodName);
     }
 }

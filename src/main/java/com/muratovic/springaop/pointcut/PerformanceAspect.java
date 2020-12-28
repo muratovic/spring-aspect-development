@@ -15,11 +15,11 @@ public class PerformanceAspect {
 
     private static Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
 
-    @Pointcut("within(com.muratovic..*) && execution(* com.muratovic.springaop.repository.StudentRepository.*(..))")
-    public void repositoryClassMethods() {
+    @Pointcut("within(com.muratovic..*) && execution(* com.muratovic.springaop.service.StudentService.*(..))")
+    public void serviceClassMethods() {
     }
 
-    @Around("repositoryClassMethods()")
+    @Around("serviceClassMethods()")
     public Object measureMethodExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long start = System.nanoTime();
         Object retval = pjp.proceed();
